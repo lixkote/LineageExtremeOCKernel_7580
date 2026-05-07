@@ -22,10 +22,10 @@ Ultimate performance-focused kernel for **LineageOS 18.1** on **Exynos 7580** de
 * Second CPU cluster unlocked (**8 cores enabled**)
 
 > ⚠️ Enabling all 8 cores may cause instability on some devices.
-> This depends on the device's silicon quality ("silicon lottery").
+> This depends on the device's SOC silicon quality ("silicon lottery").
 > Samsung disabled the second cluster on stock firmware for stability reasons.
 > Some devices handle it perfectly fine, while others may experience crashes or random reboots.
-
+> If your device becomes unstable, please do not use this kernel.
 ---
 
 ## 🔹 S5 Neo Performance Version (`s5neolte`)
