@@ -1,11 +1,16 @@
 #!/bin/bash
-export CROSS_COMPILE=../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
-#rm log.txt
-#make clean
-#make distclean
-#export CROSS_COMPILE=/home/tien.tq1/toolchains/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
-export ARCH=arm64
+export USER_NAME=$(whoami)
 
-make exynos7580-a5xelte_defconfig
-make -j
-#24 2>&1 | tee -a  log.txt
+export ARCH=arm64
+export CROSS_COMPILE=/home/$USER_NAME/UltinageKernel_7580/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+
+export KBUILD_BUILD_USER=UltinageKernel
+export KBUILD_BUILD_HOST=Lixkote
+
+mkdir -p output
+
+echo "===> DEFCONFIG"
+make -C $(pwd) O=output lineageos_a3xelte_defconfig
+
+echo "===> BUILD"
+make -j64 -C $(pwd) O=output

@@ -64,6 +64,7 @@
 		uart2 = &serial_2;
 		uart3 = &serial_3;
 		tmuctrl0 = &tmuctrl_0;
+		tmuctrl1 = &tmuctrl_1;
 		jpeg0 = &jpeg_0;
 		tmuctrl2 = &tmuctrl_2;
 		spi0 = &spi_0;
@@ -142,6 +143,55 @@
 			enable-method = "psci";
 			cpu-idle-states = <&CPU_SLEEP_0 &CPU_SLEEP_1 &CPU_SLEEP_2 &CPU_SLEEP_3>;
 		};
+				cpu@100 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x100>;
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_SLEEP_0 &CPU_SLEEP_1 &CPU_SLEEP_2 &CPU_SLEEP_3>;
+			operating-points = <
+				/* khz    uv */
+				1600000  1300000
+				1500000  1287500
+				1400000  1237500
+				1300000  1187500
+				1200000  1150000
+				1100000  1112500
+				1000000  1075000
+				 900000  1037500
+				 800000  1000000
+				 700000   962500
+				 600000   925000
+				 500000   887500
+				 400000   850000
+				 300000   850000
+				>;
+			clocks = <&clock 17>;
+			clock-names = "cpu-cluster.1";
+			voltage-tolerance = <1>; /* 2 percentage */
+			clock-latency = <100000>;
+		};
+		cpu@101 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x101>;
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_SLEEP_0 &CPU_SLEEP_1 &CPU_SLEEP_2 &CPU_SLEEP_3>;
+		};
+		cpu@102 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x102>;
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_SLEEP_0 &CPU_SLEEP_1 &CPU_SLEEP_2 &CPU_SLEEP_3>;
+		};
+		cpu@103 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x103>;
+			enable-method = "psci";
+			cpu-idle-states = <&CPU_SLEEP_0 &CPU_SLEEP_1 &CPU_SLEEP_2 &CPU_SLEEP_3>;
+		};
 
 		idle-states {
 			entry-method = "arm,psci";
@@ -211,6 +261,22 @@
 				device_type = "cs";
 				offset = <0x710000>;
 			};
+			css_pc@4 {
+				device_type = "cs";
+				offset = <0x810000>;
+			};
+			css_pc@5 {
+				device_type = "cs";
+				offset = <0x910000>;
+			};
+			css_pc@6 {
+				device_type = "cs";
+				offset = <0xa10000>;
+			};
+			css_pc@7 {
+				device_type = "cs";
+				offset = <0xb10000>;
+			};
 			etm_core@0 {
 				device_type = "etm";
 				offset = <0x440000>;
@@ -230,6 +296,26 @@
 				device_type = "etm";
 				offset = <0x740000>;
 				funnel_port = <0x3>;
+			};
+			etm_core@4 {
+				device_type = "etm";
+				offset = <0x840000>;
+				funnel_port = <0x4>;
+			};
+			etm_core@5 {
+				device_type = "etm";
+				offset = <0x940000>;
+				funnel_port = <0x5>;
+			};
+			etm_core@6 {
+				device_type = "etm";
+				offset = <0xa40000>;
+				funnel_port = <0x6>;
+			};
+			etm_core@7 {
+				device_type = "etm";
+				offset = <0xb40000>;
+				funnel_port = <0x7>;
 			};
 			funnel@0 {
 				device_type = "funnel";
@@ -469,6 +555,12 @@
 		compatible = "samsung,exynos7580-tmu";
 		reg = <0x0 0x10030000 0x0 0x200>, <0x0 0x10030000 0x0 0x200>;
 		interrupts = <0 435 0>;
+	};
+
+	tmuctrl_1: tmuctrl@10060000 {
+		compatible = "samsung,exynos7580-tmu";
+		reg = <0x0 0x10060000 0x0 0x200>, <0x0 0x10040000 0x0 0x200>;
+		interrupts = <0 114 0>;
 	};
 
 	scaler_0: scaler@12C00000 {
@@ -1590,18 +1682,27 @@
 		ip_ver = <12>;
 		clock_rate = <266000000>;
 		min_rate = <100000>;
-		num_qos_steps = <3>;
+		num_qos_steps = <4>;
 		mfc_qos_table {
-			mfc_qos_variant_0 {
+			mfc_qos_variant_0 {		/* Enc table */
+				thrd_mb = <0>;
+				freq_mfc = <0>;
+				freq_int = <200000>;
+				freq_mif = <559000>;
+				freq_cpu = <0>;
+				freq_kfc = <0>;
+				has_enc_table = <0>;
+			};
+			mfc_qos_variant_1 {				
 				thrd_mb = <0>;
 				freq_mfc = <0>;
 				freq_int = <100000>;
 				freq_mif = <416000>;
 				freq_cpu = <0>;
 				freq_kfc = <0>;
-				has_enc_table = <0>;
+				has_enc_table = <1>;
 			};
-			mfc_qos_variant_1 {		/* Enc table */
+			mfc_qos_variant_2 {		/* Enc table */
 				thrd_mb = <108000>;
 				freq_mfc = <0>;
 				freq_int = <200000>;
@@ -1610,7 +1711,7 @@
 				freq_kfc = <0>;
 				has_enc_table = <0>;
 			};
-			mfc_qos_variant_2 {
+			mfc_qos_variant_3 {
 				thrd_mb = <108000>;
 				freq_mfc = <0>;
 				freq_int = <160000>;
