@@ -28,30 +28,13 @@ Ultimate performance-focused kernel for **LineageOS 18.1** on **Exynos 7580** de
 > If your device becomes unstable, please do not use this kernel.
 ---
 
-## 🔹 S5 Neo Performance Version (`s5neolte`)
+## 🔹 S5 Neo (`s5neolte`)
 
 ### Features
 
 * GPU overclocked to **800 MHz** for smoother UI performance
 * Fine-tuned CPU & GPU frequencies for improved smoothness and battery life
 * CPU overclocked to **1.7 GHz**
-
-Recommended for users who prioritize maximum performance.
-
----
-
-## 🔹 S5 Neo EnergySave Version (`s5neolte`)
-
-### Features
-
-* GPU overclocked to **800 MHz** for smoother UI performance
-* Fine-tuned CPU & GPU frequencies for improved smoothness and battery life
-* Second CPU cluster disabled
-
-The **EnergySave** version disables the second CPU cluster, similar to Samsung's stock A3 2016 kernel behavior.
-This results in improved battery life and lower heat output.
-
-Recommended for users who prefer longer battery life over maximum performance.
 
 ---
 
