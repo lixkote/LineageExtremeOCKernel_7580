@@ -18,6 +18,7 @@ Ultimate performance-focused kernel for **LineageOS 18.1** on **Exynos 7580** de
 ### Features
 
 * GPU overclocked to **800 MHz** for smoother UI performance
+* Better, quicker GPU wake-up
 * Fine-tuned CPU & GPU frequencies for improved smoothness and battery life
 * Second CPU cluster unlocked (**8 cores enabled**)
 
@@ -33,6 +34,7 @@ Ultimate performance-focused kernel for **LineageOS 18.1** on **Exynos 7580** de
 ### Features
 
 * GPU overclocked to **800 MHz** for smoother UI performance
+* Better, quicker GPU wake-up
 * Fine-tuned CPU & GPU frequencies for improved smoothness and battery life
 * CPU overclocked to **1.7 GHz**
 
